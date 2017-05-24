@@ -1,7 +1,14 @@
 html
 	head
 		title Bulletin Board
-		link(rel="stylesheet", href="css/style.css")
+		link(rel="stylesheet", href="style.css")
+		script.
+			function toPost() {
+				window.location.href = '/post_message';
+			}
+
 	body
 		h1 Bulletin board
 		p Please be nice to each other!
+		br
+		button(onclick="toPost()") ENTER

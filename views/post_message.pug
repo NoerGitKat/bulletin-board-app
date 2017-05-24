@@ -1,0 +1,13 @@
+html
+	head
+		title Post Message
+	body
+		h1 Post Message
+		p Type here your message:
+		br
+		form(method="POST" action="/post_message")
+			input(type="text" name="title" placeholder="This is my nice title...")
+			br
+			input(type="text" name="body" placeholder="This is my nice message...")
+			br
+			input(type="submit" value="POST!")
