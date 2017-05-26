@@ -1,13 +1,18 @@
 html
 	head
 		title Post Message
+		link(rel="stylesheet", href="../css/style.css")
+		link(rel="stylesheet", href="../css/form.css")
 	body
-		h1 Post Message
-		p Type here your message:
-		br
-		form(method="POST" action="/post_message")
-			input(type="text" name="title" placeholder="This is my nice title...")
+		div.wrapper
+			h1 Post Message
+			p Type here your message:
 			br
-			input(type="text" name="body" placeholder="This is my nice message...")
-			br
-			input(type="submit" value="POST!")
+			form#form(method="POST" action="/post_message")
+				input.title(type="text" name="title" placeholder="This is my nice title..." maxlength="50" required)
+				br
+				br
+				textarea.body(type="text" name="body" placeholder="This is my nice message..." maxlength="343" required)
+				br
+				br
+				input.button(type="submit" value="POST!")

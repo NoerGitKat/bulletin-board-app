@@ -1,0 +1,19 @@
+#form .title, .body {
+	font-family: Helvetica;
+	font-size: 14px;
+	width: 400px;
+}
+
+#form .title {
+	height: 30px;
+	margin-bottom: -10px;
+}
+
+#form .body {
+	height: 160px;
+}
+
+#form .button {
+	padding: 10px;
+	margin-top: -10px;
+}
