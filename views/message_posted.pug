@@ -2,8 +2,13 @@ html
 	head
 		title Message Posted
 		link(rel="stylesheet", href="../css/style.css")
+		link(rel="stylesheet", href="../css/posted.css")
 	body
 		h1 Yes!
-		p Your message has been posted automagically! 
-		p #{messages.title}
-		p #{messages.body}
+		p Your message has been posted automagically!
+		br
+		div#background
+			each message in messages
+				div.posted
+					h4 #{message.title}
+					p #{message.body}

@@ -1,0 +1,32 @@
+#background {
+	background: url(../img/bulletin_board.jpg) repeat center;
+	background-size: cover;
+	height: 90%;
+	width: 95%;
+	margin: 40px auto;
+	overflow: scroll;
+}
+
+.posted {
+	display: inline;
+	margin: 20px;
+	width: 180px;
+	border-radius: 10px;
+	background-color: #ffff88;
+	border:1px solid #E8E8E8;
+	border-top:1px solid #fdfd86;
+	font-family:'Reenie Beanie';
+	font-size:14px;
+	float: left;
+}
+
+.posted h4 {
+	padding: 10px;
+	border-bottom: 1px solid grey;
+}
+
+.posted p {
+	padding-bottom: 5px;
+	margin: 10px;
+	text-align: left;
+}

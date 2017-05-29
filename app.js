@@ -1,15 +1,16 @@
 const express = require('express');
 const pg = require('pg');
 const app = express();
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser')();
 
 //Database connection
-var connection = "postgres://postgres:Blabla_55@localhost/bulletin_board";
+var connection = 'postgres://' + process.env.POSTGRES_USER + ':' + process.env.POSTGRES_PASSWORD + '@localhost/bulletinboard';
 
 app.set('views', 'views');
 app.set('view engine', 'pug');
 
 app.use(express.static('public'));
+app.use('/', bodyParser);
 
 // Route for homepage
 app.get('/', (request, response) => {
@@ -23,30 +24,27 @@ app.get('/post_message', (request, response) => {
 
 // Post request that handles the new input
 app.post('/post_message', (request, response) => {
-	var message = [];
-
 	pg.connect(connection, (err, client, done) => {
-		if(err) {
-			return console.log('Beep boop an error has occurred: ', err);
-		}
-		client.query('INSERT INTO messages (title, body) VALUES ($1, $2)', 
-			[request.body.title, request.body.body]);
-			for (var i = 0; i < result.length; i++) {
-
-	  			// Create an object to save current row's data
-		  		var newMessage = {
-		  			'title':result[i].title,
-					'body':result[i].body,
-				}
-
-				message.push(newMessage);
-			}
-
-			response.render('message_posted', {messages: message});
-			done();
+		if(err) throw err;
+		client.query(`INSERT INTO messages (title, body) VALUES ('${request.body.title}', '${request.body.body}')`, (err, result) => {
+			client.query("SELECT * FROM messages", (err, result) => {
+				console.log(result.rows);
+				response.render('message_posted', { messages: result.rows});
+				done();
+				pg.end();
+			});
+		});
 	});
 });
 
 const listener = app.listen(3000, () => {
+	pg.connect(connection, (err, client, done) => {
+		if(err) throw err;
+		client.query('TRUNCATE TABLE messages', (err, result) => {
+			if(err) throw err;
+			console.log('table truncated');
+		});			
+		done();
+	});
 	console.log('The server has started at port:' + listener.address().port);
 });
