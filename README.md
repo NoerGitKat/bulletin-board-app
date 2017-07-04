@@ -1,0 +1,1 @@
+This is a web app that gives the user the functionality of a bulletin board. Users can register and login, then post new messages on a bulletin board. This is made with Node.js, Express.js, green tea and an unhealthy dose of sleep deprivation.
